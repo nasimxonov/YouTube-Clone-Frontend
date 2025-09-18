@@ -5,20 +5,23 @@ import { HiMiniBars3 } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Icon from "../components/ui/Icons";
-import { authStore } from "../store/authStore";
+import { useUserStore, type User } from "../store/authStore";
 import { changeShowcaseStore } from "../store/showStore";
 
 export default function Header() {
   const { toggle, isOpen } = changeShowcaseStore();
   const [data, setData] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const authToggle = authStore((state) => state.authToggle);
+  const { getUser, setUser } = useUserStore();
+  const [me, setMe] = useState<User>();
 
   const handleClick = () => {
     window.location.href = `${
       import.meta.env.VITE_API_BACKEND_URL
-    }/auth/google`;
+    }/auth/google/callback`;
   };
+
+  const temp = getUser();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -31,7 +34,10 @@ export default function Header() {
         );
         const userData = await res.json();
         if (userData) {
-          authToggle();
+          console.log(userData);
+
+          setUser(userData);
+          setMe(userData);
         }
         setData(userData.data?.name || null);
       } catch (err) {
@@ -93,14 +99,23 @@ export default function Header() {
               <Icon.headerSettings />
             </div>
 
-            <button onClick={handleClick} className={data ? `hidden` : `block`}>
-              <div className="w-[102px] h-[36px] rounded-[20px] border border-[#d3d3d3] flex items-center justify-center gap-1.5">
-                <Icon.defaultUserLogin />
-                <span className="text-[14px] text-[#065FD4] font-bold">
-                  Sign In
-                </span>
+            {!temp ? (
+              <button
+                onClick={handleClick}
+                className={data ? `hidden` : `block`}
+              >
+                <div className="w-[102px] h-[36px] rounded-[20px] border border-[#d3d3d3] flex items-center justify-center gap-1.5">
+                  <Icon.defaultUserLogin />
+                  <span className="text-[14px] text-[#065FD4] font-bold">
+                    Sign In
+                  </span>
+                </div>
+              </button>
+            ) : (
+              <div className="h-[30px] w-[30px] text-white flex items-center justify-center rounded-[50%] bg-[green]">
+                {me ? me.username[0] : null}
               </div>
-            </button>
+            )}
 
             <button
               className={

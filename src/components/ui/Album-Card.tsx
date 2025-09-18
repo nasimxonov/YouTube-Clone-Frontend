@@ -20,16 +20,19 @@ const Album = () => {
         {/* ✅ Data kelsa AlbumCards lar */}
         {isSuccess &&
           data?.data.videos.map((video: any) => (
-            <AlbumCards
-              key={video.id}
-              createdAt={video.createdAt}
-              thumbnail={video.thumbnail}
-              viewsCount={video.viewsCount}
-              title={video.title}
-              duration={video.duration}
-              channelName={video.author.channelName}
-              channelBanner={video.author.avatar}
-            />
+            <span>
+              <AlbumCards
+                key={video.id}
+                id={video.id}
+                createdAt={video.createdAt}
+                thumbnail={video.thumbnail}
+                viewsCount={video.viewsCount}
+                title={video.title}
+                duration={video.duration}
+                channelName={video.author.channelName}
+                channelBanner={video.author.avatar}
+              />
+            </span>
           ))}
       </div>
     </div>

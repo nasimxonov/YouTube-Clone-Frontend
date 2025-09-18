@@ -14,9 +14,9 @@ function RootLayout() {
         </div>
 
         {/* Main */}
-        <main className="flex-1 flex flex-col ml-3">
+        <section className="flex-1 flex flex-col ml-3">
           <Outlet />
-        </main>
+        </section>
       </div>
     </>
   );

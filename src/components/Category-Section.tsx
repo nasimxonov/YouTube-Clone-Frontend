@@ -22,7 +22,7 @@ const CategorySection = () => {
   }, [data, setCategories]);
 
   return (
-    <div className="flex z-10 items-center gap-2 overflow-x-auto no-scrollbar">
+    <div className="flex z-10 items-center gap-2 overflow-x-auto">
       {categories.map((item) => (
         <CategoryButton
           key={item.id}

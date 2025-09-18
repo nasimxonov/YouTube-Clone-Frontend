@@ -1,7 +1,7 @@
 import { Button, Layout, Menu } from "antd";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { authStore } from "../store/authStore";
+import { Link, useLocation } from "react-router-dom";
+import { useUserStore } from "../store/authStore";
 import { changeShowcaseStore } from "../store/showStore";
 import Icon from "./ui/Icons";
 
@@ -13,34 +13,18 @@ const MenuItems = [
     key: "1",
     icon: <Icon.sidebarHome />,
     style: { padding: "10px 16px", margin: "4px 0", gap: "6px" },
-    label: "Home",
+    label: <Link to="/">Home</Link>, // 🔑 Link ishlatildi
   },
   {
     key: "2",
     icon: <Icon.sidebarShorts />,
-    style: { padding: "10px 16px", margin: "4px 0", gap: "6px" },
-    label: "Shorts",
+    label: <Link to="/shorts">Shorts</Link>,
   },
   {
     key: "3",
     icon: <Icon.sidebarSubscriptions />,
-    style: { padding: "10px 16px", margin: "4px 0", gap: "6px" },
-    label: "Subscriptions",
+    label: <Link to="/subscriptions">Subscriptions</Link>,
   },
-  { type: "divider" as const },
-  {
-    key: "4",
-    icon: <Icon.sidebarLibrary />,
-    style: { padding: "10px 16px", margin: "4px 0", gap: "6px" },
-    label: "Library",
-  },
-  {
-    key: "5",
-    icon: <Icon.sidebarHistory />,
-    style: { padding: "10px 16px", margin: "4px 0", gap: "6px" },
-    label: "History",
-  },
-  { type: "divider" as const },
 ];
 
 // Explore bo‘limi
@@ -85,10 +69,12 @@ const ExploreItems = [
 
 export default function Sidebar() {
   const { isOpen, toggle } = changeShowcaseStore();
-  const open = authStore((state) => state.isOpen);
+  const { getUser } = useUserStore();
 
   const location = useLocation();
   const video = location.pathname.split("/")[1];
+
+  const open = getUser();
 
   useEffect(() => {
     toggle(false);
@@ -116,18 +102,22 @@ export default function Sidebar() {
       {!isOpen && (
         <>
           {/* Sign in section */}
-          <div
-            className={
-              open ? `px-4 py-3 border-y text-sm text-gray-700` : "hidden"
-            }
-          >
-            <p className="mb-2 text-[14px]">
-              Sign in to like videos, comment, and subscribe.
-            </p>
-            <Button type="default" icon={<Icon.defaultUserLogin />}>
-              Sign in
-            </Button>
-          </div>
+          {!open ? (
+            <div
+              className={
+                open ? `px-4 py-3 border-y text-sm text-gray-700` : "hidden"
+              }
+            >
+              <p className="mb-2 text-[14px]">
+                Sign in to like videos, comment, and subscribe.
+              </p>
+              <Button type="default" icon={<Icon.defaultUserLogin />}>
+                Sign in
+              </Button>
+            </div>
+          ) : (
+            <></>
+          )}
 
           {/* Explore Menu */}
           <Menu

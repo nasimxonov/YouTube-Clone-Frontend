@@ -3,7 +3,7 @@ import Showcase from "../components/Showcase";
 const HomePage = () => {
   return (
     <main>
-      <div className="category-section w-full h-[40px]">
+      <div className="category-section sticky top-[56px] z-20 bg-white w-full h-[40px]">
         <CategorySection />
       </div>
 

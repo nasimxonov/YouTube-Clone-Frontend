@@ -1,18 +1,33 @@
 import { PiMusicNoteFill } from "react-icons/pi";
 import Album from "../components/ui/Album-Card";
 import { useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 const VideoPage = () => {
   const { id } = useParams();
-  console.log(
-    `${import.meta.env.VITE_API_BACKEND_URL}/video/${id}/stream?quality=720p`
-  );
+
+  const [videoId, setVideoId] = useState(id);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+
+    if (id) {
+      setVideoId(id);
+    }
+  }, [id]);
+
   return (
     <div className="video-page p-3 h-full w-full max-h-[800px] flex gap-3 px-5">
       <div className="w-[70%] h-[600px] flex items-end rounded-[15px] overflow-hidden">
         <video
+          ref={videoRef}
           width="640"
           height="360"
           controls
+          autoPlay
+          muted
           style={{
             height: "580px",
             width: "100%",
@@ -22,7 +37,7 @@ const VideoPage = () => {
           <source
             src={`${
               import.meta.env.VITE_API_BACKEND_URL
-            }/video/${id}/stream?quality=720p`}
+            }/video/${videoId}/stream?quality=720p`}
             type="video/mp4"
           />
         </video>
