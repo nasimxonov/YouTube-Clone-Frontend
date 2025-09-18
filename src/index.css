@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+.con {
+  width: 97%;
+  margin: 0 auto;
+}
+
+.ant-menu-item-selected {
+  background-color: rgba(128, 128, 128, 0.155) !important;
+}
+
+.right {
+  scrollbar-width: thin; /* Firefox uchun yupqa scrollbar */
+  scrollbar-color: #9ca3af transparent; /* Firefox ranglari */
+
+  /* Chrome, Edge va Safari uchun */
+}
+.right::-webkit-scrollbar {
+  width: 8px; /* scrollbar eni */
+  height: 400px;
+}
+
+.right::-webkit-scrollbar-track {
+  background: transparent; /* fonini yashirish */
+  margin: 4px 0; /* yuqori-pastki margin */
+}
+
+.right::-webkit-scrollbar-thumb {
+  background-color: #9ca3af; /* scrollbar rangi */
+  border-radius: 10px; /* yumaloq qilish */
+  border: 2px solid transparent; /* orasidan biroz bo‘sh joy qoldirish */
+}
+
+.mycon {
+  height: calc(100vh - 56px);
+}
