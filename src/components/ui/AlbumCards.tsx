@@ -25,7 +25,6 @@ const AlbumCards = ({
 }: Props) => {
   const [hover, setHover] = useState(false);
 
-  // duration ni mm:ss formatga o‘tkazib beramiz
   const formatDuration = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -39,7 +38,6 @@ const AlbumCards = ({
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        {/* Thumbnail qismi */}
         <div className="relative w-[170px] min-w-[170px] h-[95px]">
           <img
             className="w-full h-full object-cover rounded-lg"
@@ -51,19 +49,15 @@ const AlbumCards = ({
           </span>
         </div>
 
-        {/* O'ng tarafdagi ma’lumotlar */}
         <div className="flex flex-col flex-1">
-          {/* Title */}
           <h3 className="text-[15px] font-medium text-[#0F0F0F] line-clamp-2">
             {title}
           </h3>
 
-          {/* Kanal nomi */}
           <span className="text-[13px] text-gray-800 font-semibold mt-1">
             {channelName}
           </span>
 
-          {/* Views va vaqt */}
           <div className="text-[12px] text-gray-600 flex items-center gap-1 mt-1">
             <span>{viewsCount.toLocaleString()} views</span>
             <span>•</span>
@@ -71,7 +65,6 @@ const AlbumCards = ({
           </div>
         </div>
 
-        {/* Options tugmasi */}
         <TbDotsVertical
           className={`${
             hover ? "block" : "hidden"

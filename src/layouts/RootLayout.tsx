@@ -8,12 +8,10 @@ function RootLayout() {
     <>
       <Header />
       <div className="flex">
-        {/* Sidebar */}
         <div className="sticky top-[56px] mycon">
           <Sidebar />
         </div>
 
-        {/* Main */}
         <section className="flex-1 flex flex-col ml-3">
           <Outlet />
         </section>

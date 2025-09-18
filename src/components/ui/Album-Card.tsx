@@ -8,7 +8,6 @@ const Album = () => {
   return (
     <div className="right h-[500px]  overflow-y-auto w-full mt-2 mb-1">
       <div className=" flex flex-col gap-y-1 w-full">
-        {/* Skeleton loader */}
         {isPending &&
           Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="p-2 bg-white rounded-lg shadow-sm">
@@ -17,7 +16,6 @@ const Album = () => {
             </div>
           ))}
 
-        {/* ✅ Data kelsa AlbumCards lar */}
         {isSuccess &&
           data?.data.videos.map((video: any) => (
             <span>

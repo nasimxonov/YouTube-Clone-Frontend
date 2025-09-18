@@ -13,25 +13,23 @@
 }
 
 .right {
-  scrollbar-width: thin; /* Firefox uchun yupqa scrollbar */
-  scrollbar-color: #9ca3af transparent; /* Firefox ranglari */
-
-  /* Chrome, Edge va Safari uchun */
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af transparent;
 }
 .right::-webkit-scrollbar {
-  width: 8px; /* scrollbar eni */
+  width: 8px;
   height: 400px;
 }
 
 .right::-webkit-scrollbar-track {
-  background: transparent; /* fonini yashirish */
-  margin: 4px 0; /* yuqori-pastki margin */
+  background: transparent;
+  margin: 4px 0;
 }
 
 .right::-webkit-scrollbar-thumb {
-  background-color: #9ca3af; /* scrollbar rangi */
-  border-radius: 10px; /* yumaloq qilish */
-  border: 2px solid transparent; /* orasidan biroz bo‘sh joy qoldirish */
+  background-color: #9ca3af;
+  border-radius: 10px;
+  border: 2px solid transparent;
 }
 
 .mycon {

@@ -60,7 +60,6 @@ const VideoCards = ({
       </Link>
 
       <div className="card-bottom flex items-start gap-2">
-        {/* Channel Avatar */}
         <div className="bottom-left min-w-[28px] h-[28px] rounded-full overflow-hidden">
           {channelBanner ? (
             <img
