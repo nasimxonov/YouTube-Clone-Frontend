@@ -12,7 +12,7 @@ const MenuItems = [
     key: "1",
     icon: <Icon.sidebarHome />,
     style: { padding: "10px 16px", margin: "4px 0", gap: "6px" },
-    label: <Link to="/">Home</Link>,
+    label: <Link to="/">Home</Link>, 
   },
   {
     key: "2",

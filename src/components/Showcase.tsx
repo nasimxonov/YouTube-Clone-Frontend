@@ -1,16 +1,11 @@
-import { useEffect } from "react";
 import { useGetVideos } from "../hooks/requests/useGetVideos";
 import { changeShowcaseStore } from "../store/showStore";
 import VideoCards from "./ui/VideoCards";
 import { Skeleton } from "antd";
-import { useCategoryStore } from "../store/useCategoryStore";
 
 const Showcase = () => {
   const { isOpen } = changeShowcaseStore();
   const { data, isSuccess, isPending } = useGetVideos();
-  const { activeCategoryId } = useCategoryStore();
-
-  useEffect(() => {}, [isSuccess, data, activeCategoryId]);
 
   return (
     <div
